@@ -1,0 +1,22 @@
+GET http://localhost:5000/request
+
+###
+
+POST http://localhost:5000/request
+Content-Type: application/json
+
+{
+    "user_id":"7",
+    "sitter_id":"2",
+    "start":"9/6/2021",
+    "end":"9/6/2021",
+}
+
+###
+
+PATCH http://localhost:5000/request/612c8a8b4833163eb8c6003e
+Content-Type: application/json
+
+{
+    "accepted": true
+}
