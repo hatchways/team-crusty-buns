@@ -11,8 +11,10 @@ const logger = require("morgan");
 
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
+const requestRouter = require("./routes/request.route.js");
 
 const { json, urlencoded } = express;
+
 
 connectDB();
 const app = express();
@@ -43,6 +45,8 @@ app.use((req, res, next) => {
 
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
+app.use('/request', requestRouter);
+
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
