@@ -4,8 +4,9 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { useAuth } from '../../context/useAuthContext';
-
+import { useHistory } from 'react-router-dom';
 const AuthMenu = (): JSX.Element => {
+  const history = useHistory();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const { logout } = useAuth();
@@ -22,7 +23,9 @@ const AuthMenu = (): JSX.Element => {
     handleClose();
     logout();
   };
-
+  const handleProfile = () => {
+    history.push('/profile');
+  };
   return (
     <div>
       <IconButton aria-label="show auth menu" aria-controls="auth-menu" aria-haspopup="true" onClick={handleClick}>
@@ -41,6 +44,7 @@ const AuthMenu = (): JSX.Element => {
         getContentAnchorEl={null}
       >
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        <MenuItem onClick={handleProfile}>Profile</MenuItem>
       </Menu>
     </div>
   );
