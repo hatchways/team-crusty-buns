@@ -1,24 +1,10 @@
 import React from 'react';
-import { TextField, Grid, Button, Switch, CircularProgress } from '@material-ui/core';
+import { TextField, Grid, Button, Box } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { UserProfile } from '../../interface/Profile';
 import { Formik, FormikHelpers } from 'formik';
 import moment from 'moment';
 import useStyles from './useStyles';
-// const months = [
-//   'January',
-//   'February',
-//   'March',
-//   'April',
-//   'May',
-//   'June',
-//   'July',
-//   'August',
-//   'September',
-//   'October',
-//   'November',
-//   'December',
-// ];
 
 interface Props {
   currentUserProfile: UserProfile;
@@ -43,7 +29,7 @@ const provinces = [
   'Saskatchewan',
   'Yukon Territory',
 ];
-const gender = ['male', 'female', 'unknow'];
+const gender = ['male', 'female', 'unknown'];
 const EditProfile = ({ handleProfileSubmit, currentUserProfile }: Props): JSX.Element => {
   const classes = useStyles();
 
@@ -57,13 +43,13 @@ const EditProfile = ({ handleProfileSubmit, currentUserProfile }: Props): JSX.El
           gender: currentUserProfile?.gender || '',
           email: currentUserProfile?.email || '',
           birthDate: currentUserProfile?.birthDate || undefined,
-          hourlyRate: currentUserProfile?.hourlyRate || 14,
-          address: currentUserProfile?.address || { city: 'Toronto', province: 'Ontario' },
+          hourlyRate: currentUserProfile?.hourlyRate || undefined,
+          address: currentUserProfile?.address || { city: '', province: '' },
           description: currentUserProfile?.description || '',
         }}
         onSubmit={handleProfileSubmit}
       >
-        {({ handleSubmit, handleChange, setFieldValue, values, isSubmitting }) => (
+        {({ handleSubmit, handleChange, setFieldValue, values }) => (
           <form onSubmit={handleSubmit}>
             <Grid container spacing={2} className={classes.form}>
               <Grid item xs={4}>
@@ -120,32 +106,6 @@ const EditProfile = ({ handleProfileSubmit, currentUserProfile }: Props): JSX.El
                   variant="outlined"
                   value={moment(values.birthDate).format('YYYY-MM-DD')}
                 />
-                {/* <div style={{ display: 'flex', width: '75%' }}>
-                  <Autocomplete
-                    id="date"
-                    className={classes.textInputStyle}
-                    onChange={(c, v) => setFieldValue('birthday', v)}
-                    options={months}
-                    getOptionLabel={(option) => option}
-                    renderInput={(params) => <TextField {...params} variant="outlined" />}
-                  />
-                  <Autocomplete
-                    id="date"
-                    className={classes.textInputStyle}
-                    onChange={(c, v) => setFieldValue('birthday', v)}
-                    options={months}
-                    getOptionLabel={(option) => option}
-                    renderInput={(params) => <TextField {...params} variant="outlined" />}
-                  />
-                  <Autocomplete
-                    id="date"
-                    className={classes.textInputStyle}
-                    onChange={(c, v) => setFieldValue('birthday', v)}
-                    options={months}
-                    getOptionLabel={(option) => option}
-                    renderInput={(params) => <TextField {...params} variant="outlined" />}
-                  />
-                </div> */}
               </Grid>
 
               <Grid item xs={4}>
@@ -223,11 +183,11 @@ const EditProfile = ({ handleProfileSubmit, currentUserProfile }: Props): JSX.El
                 />
               </Grid>
             </Grid>
-            <div className={classes.btnRow}>
+            <Box className={classes.btnRow}>
               <Button type="submit" variant="contained" className={classes.button}>
                 SAVE
               </Button>
-            </div>
+            </Box>
           </form>
         )}
       </Formik>

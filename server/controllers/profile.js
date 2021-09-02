@@ -19,17 +19,17 @@ exports.findAllProfiles= asyncHandler(async (req, res, next) => {
 // @access Private
 
 exports.createProfile = asyncHandler(async (req, res, next) => {
-  
+  const {firstName,lastName,description,gender,birthDate,phoneNumber,isAvailable,availability}=req.body
   await Profile.create({
-    firstName:req.body.firstName,
-    lastName:req.body.lastName,
-    description:req.body.description,
-    gender:req.body.gender,
-    birthDate:req.body.birthDate,
-    phoneNumber:req.body.phoneNumber,
-    address:req.body.address,
-    isAvailable:req.body.isAvailable,
-    availability:req.body.description,
+    firstName:firstName,
+    lastName:lastName,
+    description:description,
+    gender:gender,
+    birthDate:birthDate,
+    phoneNumber:phoneNumber,
+    address:address,
+    isAvailable:isAvailable,
+    availability:availability,
   })
    res.status(201).json({message:"created!"})
 })
@@ -41,7 +41,6 @@ exports.createProfile = asyncHandler(async (req, res, next) => {
 exports.findProfileById = asyncHandler(async (req, res, next) => {
   let _id=req.user.id;
   let profile=await Profile.findOne({userId:_id})
-  console.log("current user profile is ",profile)
   res.status(200).json({
     success:{profile}
   })
@@ -52,11 +51,10 @@ exports.findProfileById = asyncHandler(async (req, res, next) => {
 // @access Private
 
 exports.updateProfileById = asyncHandler(async (req, res, next) => {
-  let _id=req.user.id;
-  console.log("req.body",req.body)
-   await Profile.findOneAndUpdate({userId:_id},{
+  let id=req.user.id;
+   await Profile.findOneAndUpdate({userId:id},{
     $set:req.body
   })
-  const updatedProfile=await Profile.findOne({userId:_id})
+  const updatedProfile=await Profile.findOne({userId:id})
   res.status(200).json({success:{profile:updatedProfile}})
 })

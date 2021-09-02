@@ -13,18 +13,12 @@ export interface UserProfile {
 
 export interface Address {
   city?: string;
-  province: string;
+  province?: string;
 }
 
 interface Availability {
-  days?: {
-    Monday?: boolean;
-    Tuesday?: boolean;
-    Wednesday?: boolean;
-    Thursday?: boolean;
-    Friday?: boolean;
-    Saturday?: boolean;
-    Sunday?: boolean;
+  days: {
+    [key: string]: boolean;
   };
   hours: {
     end: string;

@@ -18,7 +18,6 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'space-around',
     margin: ' 0px 4%',
-    // alignItems: 'center',
   },
   textFieldRow: {
     display: 'flex',
@@ -32,7 +31,6 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     paddingLeft: '6%',
     paddingBottom: '5%',
-    // alignItems: 'center',
   },
   AvailableLabel: {
     paddingLeft: '5%',

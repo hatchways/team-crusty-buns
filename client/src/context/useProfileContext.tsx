@@ -1,5 +1,4 @@
 import { useState, useContext, createContext, FunctionComponent, useEffect, useCallback } from 'react';
-// import { useHistory } from 'react-router-dom';
 import { ProfileApiData, ProfileApiDataSuccess } from '../interface/ProfileApiData';
 import { UserProfile } from '../interface/Profile';
 import fetchUserProfile from '../helpers/APICalls/fetchUserProfile';
@@ -23,13 +22,10 @@ export const ProfileProvider: FunctionComponent = ({ children }): JSX.Element =>
   }, []);
 
   useEffect(() => {
-    console.log('user profile context running in contect page');
     const fetchCurrentUserProfile = async () => {
       await fetchUserProfile().then((data: ProfileApiData) => {
-        console.log('ProfileApiData is', data);
         if (data.success) {
           updateProfileContext(data.success);
-          console.log('data.success', data.success);
         } else {
           setCurrentUserProfile(null);
         }

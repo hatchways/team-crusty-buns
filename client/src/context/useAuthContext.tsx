@@ -39,9 +39,7 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
       })
       .catch((error) => console.error(error));
   }, [history]);
-  // const fetchUserProfile = useCallback(async()=>{
 
-  // })
   // use our cookies to check if we can login straight away
   useEffect(() => {
     const checkLoginWithCookies = async () => {
