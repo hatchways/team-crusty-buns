@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const asyncHandler = require("express-async-handler");
 const generateToken = require("../utils/generateToken");
+const Profile = require("../models/Profile");
 
 // @route POST /auth/register
 // @desc Register user
@@ -27,7 +28,11 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
     email,
     password
   });
-
+ await Profile.create({
+   userId:user._id,
+   firstName:user.username,
+   email:user.email
+ }) 
   if (user) {
     const token = generateToken(user._id);
     const secondsInWeek = 604800;
@@ -100,7 +105,8 @@ exports.loadUser = asyncHandler(async (req, res, next) => {
       user: {
         id: user._id,
         username: user.username,
-        email: user.email
+        email: user.email,
+        isAvailable:false
       }
     }
   });
