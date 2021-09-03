@@ -13,6 +13,9 @@ const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const profileRouter =require("./routes/profile")
 const notificationRouter =require("./routes/notification")
+const pingRouter = require("./routes/ping");
+
+
 const { json, urlencoded } = express;
 
 connectDB();
@@ -46,6 +49,9 @@ app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/profile",profileRouter)
 app.use('/notification',notificationRouter )
+app.use("/ping", pingRouter);
+
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
 
