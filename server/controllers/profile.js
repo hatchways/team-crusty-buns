@@ -21,15 +21,15 @@ exports.findAllProfiles= asyncHandler(async (req, res, next) => {
 exports.createProfile = asyncHandler(async (req, res, next) => {
   const {firstName,lastName,description,gender,birthDate,phoneNumber,isAvailable,availability}=req.body
   await Profile.create({
-    firstName:firstName,
-    lastName:lastName,
-    description:description,
-    gender:gender,
-    birthDate:birthDate,
-    phoneNumber:phoneNumber,
-    address:address,
-    isAvailable:isAvailable,
-    availability:availability,
+    firstName,
+    lastName,
+    description,
+    gender,
+    birthDate,
+    phoneNumber,
+    address,
+    isAvailable,
+    availability,
   })
    res.status(201).json({message:"created!"})
 })

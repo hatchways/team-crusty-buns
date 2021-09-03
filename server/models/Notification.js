@@ -5,7 +5,7 @@ const notificationSchema= new mongoose.Schema({
    title:String,
    type:String,
    description:String,
-   isRead:Boolean,
+   isRead:{type:Boolean,default:false},
    createdOn:{type:Date,default:Date.now()}
 })
 
