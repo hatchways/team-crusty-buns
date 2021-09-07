@@ -5,6 +5,7 @@ import fetchUserProfile from '../helpers/APICalls/fetchUserProfile';
 
 interface IProfileContext {
   currentUserProfile: UserProfile | null | undefined;
+
   updateProfileContext: (data: ProfileApiDataSuccess) => void;
 }
 
