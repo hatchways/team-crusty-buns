@@ -29,10 +29,10 @@ const provinces = [
   'Saskatchewan',
   'Yukon Territory',
 ];
+
 const gender = ['male', 'female', 'unknown'];
 const EditProfile = ({ handleProfileSubmit, currentUserProfile }: Props): JSX.Element => {
   const classes = useStyles();
-
   return (
     <div>
       <h1 className={classes.profileTitle}>Edit Profile</h1>

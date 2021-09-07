@@ -1,4 +1,4 @@
-const Notification= require("../models/Notification");
+const Notification = require("../models/Notification");
 const asyncHandler = require("express-async-handler");
 
 
@@ -7,14 +7,14 @@ const asyncHandler = require("express-async-handler");
 // @desc find all notifications
 // @access Private
 
-exports.fetchAllNotifications= asyncHandler(async (req, res, next) => {
-   
-  let userId=req.user.id
+exports.fetchAllNotifications = asyncHandler(async (req, res, next) => {
 
-  let notifications=await Notification.find({ userId: userId,})
+  const userId = req.user.id
+
+  const notifications = await Notification.find({ userId: userId, })
   res.status(200).json({
-    success:{
-     notifications:notifications
+    success: {
+      notifications: notifications
     }
   })
 })
@@ -23,14 +23,14 @@ exports.fetchAllNotifications= asyncHandler(async (req, res, next) => {
 // @desc find all unread notifications
 // @access Private
 
-exports.fetchAllUnreadNotifications= asyncHandler(async (req, res, next) => {
-   
-  let userId=req.user.id
-  
-  let notifications=await Notification.find({ userId: userId,isRead:false})
+exports.fetchAllUnreadNotifications = asyncHandler(async (req, res, next) => {
+
+  const userId = req.user.id
+
+  const notifications = await Notification.find({ userId: userId, isRead: false })
   res.status(200).json({
-    success:{
-     notifications:notifications
+    success: {
+      notifications: notifications
     }
   })
 })
@@ -39,39 +39,37 @@ exports.fetchAllUnreadNotifications= asyncHandler(async (req, res, next) => {
 // @desc create notification
 // @access Private
 
-exports.createNewNotification= asyncHandler(async (req, res, next) => {
-   
-   let {title,description,type,userId}=req.body
+exports.createNewNotification = asyncHandler(async (req, res, next) => {
 
-   await Notification.create({title,description,type,userId})
-   
-   res.status(201).json({
-     success:{
-      message:"Notification created!"
-     }
-   })
-   
+  const { title, description, type, userId } = req.body
+
+  await Notification.create({ title, description, type, userId })
+
+  res.status(201).json({
+    success: {
+      message: "Notification created!"
+    }
+  })
+
 })
 
-
-// @route GET /notification/dismiss/:id
+// @route GET /notification/dismiss
 // @desc Mark notification as read
 // @access Private
 
-exports.dismissNotification= asyncHandler(async (req, res, next) => {
-   
-  let id=req.params.id//notification id
-  let userId=req.user.id
-  await Notification.findByIdAndUpdate({_id:id},{
-    $set:{
-      isRead:true
+exports.dismissNotification = asyncHandler(async (req, res, next) => {
+
+  const id = req.body.id//notification id
+  await Notification.findByIdAndUpdate({ _id: id}, {
+    
+    $set: {
+      isRead: true
     }
   })
-  
-  let notifications=await Notification.find({ userId: userId,isRead:false})// unread notifications
+  const notification = await Notification.findById({ _id: id })
   res.status(200).json({
-    success:{
-     notifications:notifications
+    success: {
+      notification: notification
     }
   })
 })

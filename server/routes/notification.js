@@ -9,7 +9,7 @@ router.route("/unread").get(protect,fetchAllUnreadNotifications)
 
 router.route("/create").post(protect,createNewNotification)
 
-router.route("/dismiss/:id").get(protect,dismissNotification)
+router.route("/dismiss").post(protect,dismissNotification)
 
 
 module.exports = router;
